@@ -8,6 +8,7 @@ Developed by Team **spf-support**
 <!-- Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory. -->
 
 System used: `Ubuntu 22.04.3`
+<br>
 Tested on `Android 13`
 
 ## 🚀 How to use
