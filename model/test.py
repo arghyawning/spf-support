@@ -17,7 +17,7 @@ Instead of attempting to come up with an answer, just acknowledge that you don't
 Context: {context}
 Question: {question}
 
-Please respond only with helpful responses.
+Please respond only with helpful responses. 
 Here's a helpful answer.
 """
 
