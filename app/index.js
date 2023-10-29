@@ -1,14 +1,24 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import styles from "./styles";
 import { Stack } from "expo-router";
 
 const Home = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleQuestionSubmit = async () => {
     try {
+      setLoading(true);
+      setAnswer("");
       console.log({ question: question });
       const response = await fetch("http://192.168.23.216:5000/get_answer", {
         method: "POST",
@@ -23,6 +33,8 @@ const Home = () => {
       setAnswer(data.answer);
     } catch (error) {
       console.error("Error fetching answer:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,10 +71,21 @@ const Home = () => {
         style={styles.button}
       /> */}
 
-      <TouchableOpacity style={styles.button} onPress={handleQuestionSubmit}>
-        <Text style={{ color: "black", textAlign: "center", fontSize: 17 }}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleQuestionSubmit}
+        disabled={loading}
+      >
+        {/* <Text style={{ color: "black", textAlign: "center", fontSize: 17 }}>
           Search
-        </Text>
+        </Text> */}
+        {loading ? (
+          <ActivityIndicator size="small" color="black" />
+        ) : (
+          <Text style={{ color: "black", textAlign: "center", fontSize: 17 }}>
+            Search
+          </Text>
+        )}
       </TouchableOpacity>
 
       {answer !== "" && <Text style={styles.answer}>{answer}</Text>}

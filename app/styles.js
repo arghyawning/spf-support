@@ -1,4 +1,3 @@
-// styles.js
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -32,8 +31,6 @@ const styles = StyleSheet.create({
   },
   button: {
     // height: 40,
-    // borderColor: "gray",
-    // borderWidth: 1,
     marginBottom: 10,
     padding: 10,
     width: "25%",
