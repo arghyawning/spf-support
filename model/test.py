@@ -4,7 +4,6 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.llms import CTransformers
 from langchain.chains import RetrievalQA
-import chainlit as cl
 
 from flask import Flask, request, jsonify
 from transformers import pipeline
@@ -77,7 +76,6 @@ def qa_bot():
 def final_result(query):
     qa_result = qa_bot()
     response = qa_result({"query": query})
-    print("hidvhusvbuosdvhsodvhwovhivshdvisdvhsivhvipvsh")
     print("--------------------------------------------------")
     print(response["result"])
     return response["result"]
