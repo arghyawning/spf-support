@@ -1,6 +1,6 @@
-# MedGPT
+# Mediklik
 
-Developed by Team **spf-support**
+Developed by team **spf-support**
 
 ---
 
@@ -15,15 +15,23 @@ Tested on `Android 13`
 
 <!-- npx create-expo-app -e with-router -->
 
-```sh
-python3 model.py
-```
+In `model/`
+- if you're running for the first time, run
 
-While that is running, open a new terminal and run:
+    ```sh
+    python3 hello.py
+    ```
+- run
+    ```sh
+    python3 test.py
+    ```
+<br>
 
-```sh
-npm start
-```
+In the root directory,
+- While `test.py` is running, run:
+    ```sh
+    npm start
+    ```
 
 ## 📝 Notes
 
