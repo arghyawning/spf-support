@@ -12,13 +12,12 @@ from flask_cors import CORS
 
 DB_FAISS_PATH = "vectorstore/db_faiss"
 
-custom_prompt_template = """To respond to the user's inquiry, use the following details.
-Instead of attempting to come up with an answer, just acknowledge that you don't know. Do not try to make up an answer.
+custom_prompt_template = """Use the following pieces of information to answer the user's question.
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
 Context: {context}
 Question: {question}
-
-Please respond only with helpful responses. 
-Here's a helpful answer.
+Only return the helpful answer below and nothing else.
+Helpful answer:
 """
 
 
