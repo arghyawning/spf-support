@@ -12,37 +12,14 @@ from flask_cors import CORS
 
 DB_FAISS_PATH = "vectorstore/db_faiss"
 
-custom_prompt_template = """Use the following pieces of information to answer the user's question.
-If you don't know the answer, just say that you don't know, don't try to make up an answer.
-
+custom_prompt_template = """To respond to the user's inquiry, use the following details.
+Instead of attempting to come up with an answer, just acknowledge that you don't know. Do not try to make up an answer.
 Context: {context}
 Question: {question}
 
-Only return the helpful answer below and nothing else.
-Helpful answer:
+Please respond only with helpful responses.
+Here's a helpful answer.
 """
-
-
-def set_custom_prompt():
-    """
-    Prompt template for QA retrieval for each vectorstore
-    """
-    prompt = PromptTemplate(
-        template=custom_prompt_template, input_variables=["context", "question"]
-    )
-    return prompt
-
-
-# Retrieval QA Chain
-def retrieval_qa_chain(llm, prompt, db):
-    qa_chain = RetrievalQA.from_chain_type(
-        llm=llm,
-        chain_type="stuff",
-        retriever=db.as_retriever(search_kwargs={"k": 2}),
-        return_source_documents=True,
-        chain_type_kwargs={"prompt": prompt},
-    )
-    return qa_chain
 
 
 # Loading the model
@@ -65,9 +42,18 @@ def qa_bot():
     )
     db = FAISS.load_local(DB_FAISS_PATH, embeddings)
     llm = load_llm()
-    qa_prompt = set_custom_prompt()
+    qa_prompt = PromptTemplate(
+        template=custom_prompt_template, input_variables=["context", "question"]
+    )
     print(qa_prompt)
-    qa = retrieval_qa_chain(llm, qa_prompt, db)
+    # qa = retrieval_qa_chain(llm, qa_prompt, db)
+    qa = RetrievalQA.from_chain_type(
+        llm=llm,
+        chain_type="stuff",
+        retriever=db.as_retriever(search_kwargs={"k": 2}),
+        return_source_documents=True,
+        chain_type_kwargs={"prompt": qa_prompt},
+    )
 
     return qa
 
