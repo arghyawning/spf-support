@@ -11,7 +11,7 @@ System used: `Ubuntu 22.04.3`
 <br>
 Tested on `Android 13`
 
-## 🚀 How to use
+## 🚀 How to run
 
 <!-- npx create-expo-app -e with-router -->
 
