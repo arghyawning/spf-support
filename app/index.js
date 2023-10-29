@@ -15,7 +15,6 @@ const Home = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        // body: JSON.stringify({ "question" : question }),
         body: JSON.stringify({ question: question }),
       });
       console.log(response);
@@ -31,7 +30,7 @@ const Home = () => {
     <View style={styles.container}>
       <Stack.Screen
         options={{
-          headerTitle: "spf-support",
+          headerTitle: "Mediklik",
           headerStyle: {
             backgroundColor: "#008080",
           },
